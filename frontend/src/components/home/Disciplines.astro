@@ -1,0 +1,17 @@
+---
+const disciplines = [
+  { title: 'Pesas', text: 'Aumenta tu fuerza, mejora tu condición física y construye tu mejor versión.', image: '/images/discipline-weights.jpg' },
+  { title: 'Crossfit', text: 'Entrenamientos funcionales de alta intensidad para todo el cuerpo.', image: '/images/discipline-crossfit.jpg' },
+  { title: 'Artes marciales', text: 'Disciplina, control y respeto en cada entrenamiento.', image: '/images/discipline-martial-arts.jpg' },
+  { title: 'Defensa personal', text: 'Aprende a protegerte y gana confianza en ti mismo.', image: '/images/discipline-defense.jpg' },
+]
+---
+<section id="disciplinas" class="bg-[#f7f7f5] px-6 py-20 lg:px-10">
+  <div class="mx-auto max-w-7xl">
+    <p class="section-label">Disciplinas</p>
+    <h2 class="display-title mt-3 text-5xl sm:text-6xl">Entrena lo que te mueve</h2>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {disciplines.map((discipline) => <article data-reveal class="interactive-card overflow-hidden rounded-md bg-white shadow-sm"><img src={discipline.image} alt={discipline.title} class="h-44 w-full object-cover" /><div class="p-5"><h3 class="font-display text-2xl font-bold uppercase">{discipline.title}</h3><p class="mt-2 text-sm leading-6 text-neutral-600">{discipline.text}</p></div></article>)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+---
+import PublicLayout from '../layouts/PublicLayout.astro'
+import PublicNav from '../components/home/PublicNav.astro'
+import Hero from '../components/home/Hero.astro'
+import Schedule from '../components/home/Schedule.astro'
+import Disciplines from '../components/home/Disciplines.astro'
+import Location from '../components/home/Location.astro'
+import Logo from '../components/common/Logo.astro'
+---
+<PublicLayout>
+  <main id="inicio">
+    <PublicNav />
+    <Hero />
+    <Schedule />
+    <Disciplines />
+    <Location />
+  </main>
+  <footer class="flex flex-col items-center justify-between gap-4 bg-[#111111] px-6 py-7 text-white sm:flex-row lg:px-10"><Logo dark /><span class="text-[10px] uppercase tracking-[0.3em] text-neutral-500">Fuerza · Disciplina · Comunidad</span></footer>
+</PublicLayout>

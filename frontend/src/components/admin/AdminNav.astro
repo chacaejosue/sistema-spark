@@ -1,0 +1,10 @@
+---
+import Logo from '../common/Logo.astro'
+---
+<header class="border-b border-neutral-200 bg-white"><div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10"><Logo /><nav class="flex items-center gap-4"><a href="/admin" class="hidden text-sm font-semibold text-neutral-600 hover:text-brand-red sm:block">Dashboard</a><a href="/admin/clientes" class="text-sm font-semibold text-neutral-600 hover:text-brand-red">Clientes</a><button id="logout-button" class="rounded-md bg-brand-black px-4 py-2 text-xs font-bold text-white hover:bg-brand-red">Cerrar sesión</button></nav></div></header>
+<script>
+  import { logout } from '../../lib/api'
+  import { clearSession, requireSession } from '../../lib/storage'
+  requireSession()
+  document.querySelector('#logout-button')?.addEventListener('click', async () => { try { await logout() } finally { clearSession(); window.location.href = '/login' } })
+</script>

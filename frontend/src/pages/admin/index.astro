@@ -1,0 +1,48 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro'
+import AdminNav from '../../components/admin/AdminNav.astro'
+---
+<AdminLayout>
+  <AdminNav />
+  <main class="mx-auto max-w-7xl px-6 py-12 lg:px-10">
+    <p class="section-label">Panel administrativo</p>
+    <h1 class="display-title mt-3 text-6xl">Controla tu comunidad</h1>
+    <p id="admin-welcome" class="mt-4 text-neutral-600">Gestiona clientes y mantén toda la información de Spark Fit Center en orden.</p>
+
+    <section class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div data-reveal class="interactive-card rounded-xl bg-brand-black p-5 text-white"><p class="text-xs uppercase tracking-widest text-neutral-400">Clientes registrados</p><strong data-stat="total" class="stat-value skeleton mt-3 block font-display text-5xl text-brand-red">—</strong></div>
+      <div data-reveal class="interactive-card rounded-xl bg-white p-5 shadow-sm"><p class="text-xs uppercase tracking-widest text-neutral-500">Membresías mensuales</p><strong data-stat="mensual" class="stat-value skeleton mt-3 block font-display text-5xl">—</strong></div>
+      <div data-reveal class="interactive-card rounded-xl bg-white p-5 shadow-sm"><p class="text-xs uppercase tracking-widest text-neutral-500">Entradas semanales</p><strong data-stat="semanal" class="stat-value skeleton mt-3 block font-display text-5xl">—</strong></div>
+      <div data-reveal class="interactive-card rounded-xl bg-white p-5 shadow-sm"><p class="text-xs uppercase tracking-widest text-neutral-500">Pagos registrados</p><strong data-stat="monto" class="stat-value skeleton mt-3 block font-display text-4xl">—</strong></div>
+    </section>
+
+    <div class="mt-6 grid gap-5 md:grid-cols-2">
+      <a data-reveal href="/admin/clientes" class="interactive-card group rounded-xl bg-brand-black p-7 text-white shadow-xl"><span class="text-4xl">♙</span><h2 class="mt-8 font-display text-4xl uppercase">Clientes</h2><p class="mt-2 text-sm text-neutral-400">Registra, consulta y actualiza la información de tus clientes.</p><span class="mt-8 inline-block text-sm font-bold text-brand-red group-hover:text-white">Gestionar clientes →</span></a>
+      <div data-reveal class="interactive-card rounded-xl bg-white p-7 shadow-sm"><p class="section-label">Estado</p><h2 class="mt-3 font-display text-4xl uppercase">Todo listo</h2><p class="mt-2 text-sm leading-6 text-neutral-600">Tu panel está conectado con la API de Spark Fit Center.</p><div class="mt-8 flex items-center gap-2 text-sm font-semibold text-green-700"><span class="h-2.5 w-2.5 rounded-full bg-green-500"></span> Sesión activa</div></div>
+    </div>
+  </main>
+  <script>
+    import { listClientes } from '../../lib/api'
+    import { getAdmin } from '../../lib/storage'
+
+    const admin = getAdmin()
+    const welcome = document.querySelector('#admin-welcome')
+    if (admin && welcome) welcome.textContent = `Hola, ${admin.nombreAdmin}. Gestiona clientes y mantén toda la información de Spark Fit Center en orden.`
+
+    try {
+      const result = await listClientes(new URLSearchParams({ limit: '100' }))
+      const values = {
+        total: result.total,
+        mensual: result.data.filter((client) => client.tipoEntrada === 'mensual').length,
+        semanal: result.data.filter((client) => client.tipoEntrada === 'semanal').length,
+        monto: `${result.data.reduce((sum, client) => sum + Number(client.montoPago), 0).toFixed(2)} Bs`,
+      }
+      Object.entries(values).forEach(([key, value]) => {
+        const target = document.querySelector<HTMLElement>(`[data-stat="${key}"]`)
+        if (target) { target.textContent = String(value); target.classList.remove('skeleton') }
+      })
+    } catch {
+      document.querySelectorAll<HTMLElement>('[data-stat]').forEach((target) => { target.textContent = '—'; target.classList.remove('skeleton') })
+    }
+  </script>
+</AdminLayout>

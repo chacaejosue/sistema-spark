@@ -1,0 +1,11 @@
+---
+import Logo from '../common/Logo.astro'
+---
+<header class="absolute inset-x-0 top-0 z-20 bg-white/90 backdrop-blur-sm">
+  <nav class="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
+    <Logo />
+    <div class="hidden items-center gap-8 text-xs font-bold md:flex"><a href="#inicio" class="hover:text-brand-red">Inicio</a><a href="#horarios" class="hover:text-brand-red">Horarios</a><a href="#disciplinas" class="hover:text-brand-red">Disciplinas</a><a href="#contacto" class="hover:text-brand-red">Ubicación</a></div>
+    <div class="flex items-center gap-2"><a href="/login" class="rounded-md bg-brand-red px-4 py-2.5 text-xs font-bold text-white hover:-translate-y-0.5 hover:bg-red-700">♙ &nbsp; Iniciar sesión</a><button type="button" data-mobile-menu-toggle aria-expanded="false" aria-label="Abrir menú" class="rounded-md border border-neutral-200 p-2 text-lg md:hidden">☰</button></div>
+    <div data-mobile-menu class="mobile-menu absolute left-6 right-6 top-full hidden rounded-lg border border-neutral-200 bg-white p-4 shadow-xl md:hidden"><a href="#inicio" class="block rounded px-3 py-3 text-sm font-bold hover:bg-red-50 hover:text-brand-red">Inicio</a><a href="#horarios" class="block rounded px-3 py-3 text-sm font-bold hover:bg-red-50 hover:text-brand-red">Horarios</a><a href="#disciplinas" class="block rounded px-3 py-3 text-sm font-bold hover:bg-red-50 hover:text-brand-red">Disciplinas</a><a href="#contacto" class="block rounded px-3 py-3 text-sm font-bold hover:bg-red-50 hover:text-brand-red">Ubicación</a></div>
+  </nav>
+</header>

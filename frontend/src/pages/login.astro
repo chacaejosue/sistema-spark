@@ -1,0 +1,43 @@
+---
+import PublicLayout from '../layouts/PublicLayout.astro'
+import Logo from '../components/common/Logo.astro'
+---
+<PublicLayout title="Iniciar sesión | Spark Fit Center">
+  <main class="grid min-h-screen lg:grid-cols-2">
+    <section class="hidden bg-brand-black p-10 text-white lg:flex lg:flex-col lg:justify-between"><Logo dark /><div class="max-w-md"><p class="section-label">Administración</p><h1 class="display-title mt-4 text-7xl">Entrena. Gestiona. Evoluciona.</h1><p class="mt-6 text-sm leading-7 text-neutral-400">Accede al panel de administración para gestionar clientes y construir una comunidad más fuerte.</p></div><p class="text-xs text-neutral-500">SPARK FIT CENTER © 2026</p></section>
+    <section class="flex items-center justify-center bg-[#f7f7f5] p-6"><div class="w-full max-w-md"><div class="mb-10 lg:hidden"><Logo /></div><p class="section-label">Administrador</p><h1 class="display-title mt-3 text-6xl">Iniciar sesión</h1><p class="mt-4 text-sm text-neutral-600">Accede al panel de administración de Spark Fit Center.</p><form id="login-form" class="mt-8 space-y-5" novalidate><label class="block text-sm font-semibold">Usuario<input name="nombreUsuario" autocomplete="username" class="mt-2 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 outline-none focus:border-brand-red focus:ring-2 focus:ring-red-100" placeholder="Tu usuario" /></label><label class="block text-sm font-semibold">Contraseña<input type="password" name="contrasena" autocomplete="current-password" class="mt-2 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 outline-none focus:border-brand-red focus:ring-2 focus:ring-red-100" placeholder="••••••••••••" /></label><div id="login-error" class="hidden rounded-md bg-red-50 p-3 text-sm text-red-700"></div><button class="w-full rounded-md bg-brand-red px-5 py-3.5 text-sm font-bold text-white hover:bg-red-700 disabled:opacity-60" type="submit">Entrar</button></form><a href="/" class="mt-8 block text-center text-sm font-semibold text-neutral-500 hover:text-brand-red">← Volver al inicio</a></div></section>
+  </main>
+  <script>
+    import { loginFormSchema } from '../schemas/auth.schema'
+    import { login } from '../lib/api'
+    import { setSession } from '../lib/storage'
+    const form = document.querySelector<HTMLFormElement>('#login-form')
+    const error = document.querySelector<HTMLElement>('#login-error')
+    const password = form?.querySelector<HTMLInputElement>('input[name="contrasena"]')
+    if (password) {
+      const toggle = document.createElement('button')
+      toggle.type = 'button'
+      toggle.className = 'mt-2 text-xs font-semibold text-neutral-500 hover:text-brand-red'
+      toggle.textContent = 'Mostrar contraseña'
+      password.parentElement?.appendChild(toggle)
+      toggle.addEventListener('click', () => {
+        const visible = password.type === 'text'
+        password.type = visible ? 'password' : 'text'
+        toggle.textContent = visible ? 'Mostrar contraseña' : 'Ocultar contraseña'
+      })
+    }
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault()
+      if (!form || !error) return
+      error.classList.add('hidden')
+      const data = Object.fromEntries(new FormData(form))
+      const result = loginFormSchema.safeParse(data)
+      if (!result.success) { error.textContent = result.error.issues[0]?.message ?? 'Revisa los datos'; error.classList.remove('hidden'); return }
+      const button = form.querySelector('button') as HTMLButtonElement
+      button.disabled = true
+      button.textContent = 'Ingresando...'
+      try { const response = await login(result.data); setSession(response.token, response.administrador); window.location.href = '/admin' }
+      catch (requestError) { error.textContent = requestError instanceof Error ? requestError.message : 'No se pudo iniciar sesión'; error.classList.remove('hidden'); window.dispatchEvent(new CustomEvent('spark:toast', { detail: { message: 'No se pudo iniciar sesión', type: 'error' } })); button.disabled = false; button.textContent = 'Entrar' }
+    })
+  </script>
+</PublicLayout>

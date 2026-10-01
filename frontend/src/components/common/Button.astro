@@ -1,0 +1,11 @@
+---
+const { href, variant = 'primary', type = 'button' } = Astro.props
+const styles = variant === 'outline'
+  ? 'border border-brand-red text-brand-red hover:bg-brand-red hover:text-white'
+  : 'bg-brand-red text-white shadow-lg shadow-red-900/20 hover:bg-red-700'
+---
+{href ? (
+  <a data-ripple href={href} class={`inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-bold ${styles}`}><slot /> <span aria-hidden="true">→</span></a>
+) : (
+  <button data-ripple type={type} class={`inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-bold ${styles}`}><slot /></button>
+)}

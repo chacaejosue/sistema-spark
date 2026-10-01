@@ -22,7 +22,8 @@ import AdminNav from '../../../components/admin/AdminNav.astro'
       <select name="tipoPago" class="rounded-md border border-neutral-200 px-3 py-2.5 text-sm outline-none focus:border-brand-red"><option value="">Todos los pagos</option><option value="efectivo">Efectivo</option><option value="QR">Por QR</option></select>
       <input type="date" name="fechaDesde" aria-label="Fecha desde" class="rounded-md border border-neutral-200 px-3 py-2.5 text-sm outline-none focus:border-brand-red" />
       <input type="date" name="fechaHasta" aria-label="Fecha hasta" class="rounded-md border border-neutral-200 px-3 py-2.5 text-sm outline-none focus:border-brand-red" />
-      <button class="rounded-md bg-brand-black px-4 py-2.5 text-sm font-bold text-white hover:bg-brand-red">Filtrar</button>
+      <button type="submit" class="rounded-md bg-brand-black px-4 py-2.5 text-sm font-bold text-white hover:bg-brand-red">Filtrar</button>
+      <button id="clear-filters" type="button" class="rounded-md border border-neutral-300 bg-white px-4 py-2.5 text-sm font-bold text-neutral-700 hover:border-brand-red hover:text-brand-red">Limpiar filtros</button>
     </form>
 
     <div id="list-error" class="mt-5 hidden rounded-md bg-red-50 p-3 text-sm text-red-700"></div>
@@ -54,6 +55,7 @@ import AdminNav from '../../../components/admin/AdminNav.astro'
     const previousPage = document.querySelector<HTMLButtonElement>('#previous-page')
     const nextPage = document.querySelector<HTMLButtonElement>('#next-page')
     const pageStatus = document.querySelector<HTMLElement>('#page-status')
+    const clearFilters = document.querySelector<HTMLButtonElement>('#clear-filters')
     const money = (value: string | number) => `${Number(value).toFixed(2)} Bs`
     const pageSize = 20
     let activeParams = new URLSearchParams()
@@ -117,6 +119,11 @@ import AdminNav from '../../../components/admin/AdminNav.astro'
       params.set('limit', String(pageSize))
       params.set('offset', '0')
       render(params)
+    })
+
+    clearFilters?.addEventListener('click', () => {
+      form?.reset()
+      render(new URLSearchParams())
     })
 
     previousPage?.addEventListener('click', () => {

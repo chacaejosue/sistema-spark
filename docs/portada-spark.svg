@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" role="img" aria-labelledby="title desc">
+  <title id="title">Spark Fit Center</title>
+  <desc id="desc">Sistema web de gestión para gimnasio desarrollado para INFOSIS BUILD FEST 2026</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffdfc"/>
+      <stop offset=".55" stop-color="#f8f8f6"/>
+      <stop offset="1" stop-color="#fff1f1"/>
+    </linearGradient>
+    <radialGradient id="redGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ff1018" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#ff1018" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="520" rx="30" fill="url(#background)"/>
+  <ellipse cx="120" cy="120" rx="360" ry="220" fill="url(#redGlow)"/>
+  <ellipse cx="1490" cy="420" rx="360" ry="250" fill="url(#redGlow)"/>
+  <path d="M0 410C180 310 330 340 500 520H0z" fill="#ff1018" opacity=".045"/>
+  <path d="M1600 0C1420 40 1320 140 1190 0z" fill="#ff1018" opacity=".05"/>
+  <path d="M80 430C250 280 410 290 555 450" fill="none" stroke="#ff1018" stroke-width="3" opacity=".12"/>
+  <path d="M1045 80C1220 220 1370 220 1560 100" fill="none" stroke="#ff1018" stroke-width="3" opacity=".1"/>
+  <circle cx="170" cy="105" r="7" fill="#ff1018" opacity=".55"/>
+  <circle cx="1430" cy="390" r="9" fill="#ff1018" opacity=".4"/>
+  <g transform="translate(695 85) scale(.52)">
+    <path d="M28 237c34-47 45-104 91-151 38-39 99-44 135-4l31 47-35 51-47-58-36 58c-32 50-77 52-139 57z" fill="#ff1018"/>
+    <path d="M162 123l43 61 58-83c31-44 70-71 113-70l-69 111-60 88c-34 50-99 46-130 5l-31-41 40-63z" fill="#fff" stroke="#ff1018" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+  <text x="800" y="340" text-anchor="middle" fill="#151515" font-family="Inter, Avenir Next, Segoe UI, sans-serif" font-size="70" font-weight="800" letter-spacing="1">Spark Fit Center</text>
+  <text x="800" y="389" text-anchor="middle" fill="#ff1018" font-family="Inter, Avenir Next, Segoe UI, sans-serif" font-size="24" font-weight="700" letter-spacing="3">SISTEMA WEB DE GESTIÓN PARA GIMNASIO</text>
+  <text x="800" y="430" text-anchor="middle" fill="#626262" font-family="Inter, Avenir Next, Segoe UI, sans-serif" font-size="21" font-weight="400">clientes · administración · comunidad</text>
+  <rect x="616" y="456" width="368" height="38" rx="19" fill="#151515"/>
+  <text x="800" y="481" text-anchor="middle" fill="#ffffff" font-family="Inter, Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="700" letter-spacing="1.2">INFOSIS BUILD FEST 2026</text>
+</svg>

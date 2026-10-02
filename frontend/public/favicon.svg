@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#050505"/><path d="M15 88c22-27 29-55 61-61 26-4 42 9 54 31l-21 25-18-24-19 30c-15 20-31 29-57 33z" fill="#f20d16"/><path d="M62 60l20 28 34-47c15-20 34-29 62-29l-36 57-34 44c-16 20-42 23-59 7L30 101z" fill="#fff"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title">
+  <title id="title">Spark Fit Center</title>
+  <rect width="400" height="400" rx="72" fill="#050505"/>
+  <g transform="translate(0 50)">
+    <path d="M28 237c34-47 45-104 91-151 38-39 99-44 135-4l31 47-35 51-47-58-36 58c-32 50-77 52-139 57z" fill="#ff1018"/>
+    <path d="M162 123l43 61 58-83c31-44 70-71 113-70l-69 111-60 88c-34 50-99 46-130 5l-31-41 40-63z" fill="#fff" stroke="#ff1018" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+</svg>

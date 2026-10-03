@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css'
+import { inject } from '@vercel/analytics'
 const { title = 'Panel administrativo | Spark Fit Center' } = Astro.props
+inject()
 ---
 <!doctype html>
 <html lang="es">

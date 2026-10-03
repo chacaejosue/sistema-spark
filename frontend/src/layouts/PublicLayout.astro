@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css'
+import { inject } from '@vercel/analytics'
 const { title = 'Spark Fit Center | Entrena con propósito' } = Astro.props
+inject()
 ---
 <!doctype html>
 <html lang="es">
